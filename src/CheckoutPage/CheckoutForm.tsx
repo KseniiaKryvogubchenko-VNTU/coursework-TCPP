@@ -2,15 +2,23 @@ import { Button, TextField } from "@mui/material";
 import { useFormik } from "formik";
 import * as yup from "yup";
 
+const phoneRegExp =
+  /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/;
+
 const validationSchema = yup.object({
+  firstName: yup.string().required("First name is required"),
+  lastName: yup.string().required("Last name is required"),
   email: yup
     .string()
     .email("Enter a valid email")
     .required("Email is required"),
-  password: yup
+  country: yup.string().required("Country is required"),
+  city: yup.string().required("City is required"),
+  address: yup.string().required("Address is required"),
+  phone: yup
     .string()
-    .min(8, "Password should be of minimum 8 characters length")
-    .required("Password is required"),
+    .matches(phoneRegExp, "Phone number is not valid")
+    .required("Phone is required"),
 });
 
 export type UserInfo = {
@@ -23,7 +31,7 @@ export type UserInfo = {
   phone: string;
 };
 
-type CheckoutFormProps = { handleSubmit: (userData: UserInfo) => void };
+type CheckoutFormProps = { onSubmit: (userData: UserInfo) => void };
 
 const fields = [
   { name: "firstName", label: "First name" },
@@ -34,16 +42,6 @@ const fields = [
   { name: "address", label: "Address" },
   { name: "phone", label: "Phone" },
 ];
-
-type valuesType = {
-  firstName: string;
-  lastName: string;
-  email: string;
-  country: string;
-  city: string;
-  address: string;
-  phone: string;
-};
 
 export const CheckoutForm = (props: CheckoutFormProps) => {
   const formik = useFormik({
@@ -57,11 +55,12 @@ export const CheckoutForm = (props: CheckoutFormProps) => {
       phone: "",
     },
     validationSchema: validationSchema,
-    onSubmit: props.handleSubmit,
+    onSubmit: props.onSubmit,
   });
 
   return (
     <div>
+      <h3>Please fill your data:</h3>
       <form onSubmit={formik.handleSubmit}>
         <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
           {fields.map((field) => (
@@ -74,8 +73,14 @@ export const CheckoutForm = (props: CheckoutFormProps) => {
               value={formik.values[field.name]}
               onChange={formik.handleChange}
               onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
+              error={
+                // @ts-ignore
+                formik.touched[field.name] && Boolean(formik.errors[field.name])
+              }
+              helperText={
+                // @ts-ignore
+                formik.touched[field.name] && formik.errors[field.name]
+              }
               style={{ width: "50%" }}
               variant="filled"
             />
@@ -91,6 +96,7 @@ export const CheckoutForm = (props: CheckoutFormProps) => {
             padding: "10px 30px",
             margin: "20px 400px",
           }}
+          // onClick={formik.submitForm}
         >
           Submit
         </Button>
