@@ -20,6 +20,7 @@ export const CheckoutPage = (props: CheckoutPageProps) => {
   const [previewProducts, _] = useState(props.selectedProducts);
 
   const handleSubmit = (userData: UserInfo) => {
+    console.log("hgfghj");
     setUserInfo(userData);
     setIsOrderCompleted(true);
     props.clearSelectedProducts();
