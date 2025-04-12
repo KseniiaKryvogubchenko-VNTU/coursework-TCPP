@@ -1,5 +1,6 @@
+/* eslint-disable */
 // @ts-nocheck
-import React, { useMemo, useState } from "react";
+import React, { useState } from "react";
 import { Header } from "../Header";
 import { WithBackButton } from "../helpers/WithBackButton";
 import { Container } from "../helpers/Container";
@@ -17,7 +18,7 @@ type CheckoutPageProps = {
 export const CheckoutPage = (props: CheckoutPageProps) => {
   const [isOrderCompleted, setIsOrderCompleted] = useState(false);
   const [userInfo, setUserInfo] = useState<UserInfo>();
-  const previewProducts = useMemo(() =>props.selectedProducts, [])
+  const [previewProducts, _] = useState(props.selectedProducts);
 
   const handleSubmit = (userData: UserInfo) => {
     setUserInfo(userData);

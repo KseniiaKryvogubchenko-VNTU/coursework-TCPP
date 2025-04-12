@@ -24,4 +24,18 @@ export const productMock: Product[] = [
     cost: 5,
     imageUrl: "https://pngimg.com/d/mug_coffee_PNG16838.png",
   },
+  {
+    id: "4",
+    name: "Plant",
+    description: "A plant",
+    cost: 5,
+    imageUrl: "https://png.pngtree.com/png-vector/20240309/ourmid/pngtree-home-plant-in-pot-cutout-png-image_11899655.png",
+  },
+  {
+    id: "5",
+    name: "Table",
+    description: "Wooden table",
+    cost: 10,
+    imageUrl: "https://www.transparentpng.com/download/table/round-antique-wooden-table-free-png-HO7tfj.png",
+  },
 ];

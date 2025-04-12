@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { SelectedProduct } from "../App";
 import { Header } from "../Header";
 import { Container } from "../helpers/Container";
