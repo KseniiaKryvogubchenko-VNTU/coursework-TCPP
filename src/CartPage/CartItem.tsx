@@ -36,6 +36,7 @@ export const CartItem = (props: CartItemProps) => {
             objectFit: "contain",
             backgroundColor: "white",
           }}
+          alt=""
         />
         <div
           style={{

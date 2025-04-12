@@ -12,7 +12,7 @@ type MainPageProps = {
 };
 
 export const MainPage = (props: MainPageProps) => {
-  const [products, _] = useState(productMock);
+  const products = productMock
 
   return (
     <Container style={{ height: "600px" }}>

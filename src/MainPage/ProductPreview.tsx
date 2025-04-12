@@ -32,6 +32,7 @@ export const ProductPreview = (props: ProductPreviewProps) => {
         <img
           src={props.product.imageUrl}
           style={{ height: "100%", width: "100%", objectFit: "contain" }}
+          alt=""
         />
       </div>
       <div style={{ display: "flex", justifyContent: "space-between" }}>

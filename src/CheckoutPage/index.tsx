@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { Header } from "../Header";
 import { WithBackButton } from "../helpers/WithBackButton";
 import { Container } from "../helpers/Container";
@@ -17,10 +17,9 @@ type CheckoutPageProps = {
 export const CheckoutPage = (props: CheckoutPageProps) => {
   const [isOrderCompleted, setIsOrderCompleted] = useState(false);
   const [userInfo, setUserInfo] = useState<UserInfo>();
-  const [previewProducts, _] = useState(props.selectedProducts);
+  const previewProducts = useMemo(() =>props.selectedProducts, [])
 
   const handleSubmit = (userData: UserInfo) => {
-    console.log("hgfghj");
     setUserInfo(userData);
     setIsOrderCompleted(true);
     props.clearSelectedProducts();
