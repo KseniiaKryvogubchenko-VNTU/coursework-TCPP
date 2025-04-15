@@ -23,7 +23,7 @@ export const CartPage = (props: CartPageProps) => {
   const productsAmount = props.selectedProducts.length;
 
   return (
-    <Container style={{ height: "600px" }}>
+    <Container style={{ height: "100vh" }}>
       <Header selectedProducts={props.selectedProducts} />
       <div style={{ backgroundColor: "whitesmoke", height: "100%" }}>
         <WithBackButton label="Back to main page" path="/">
